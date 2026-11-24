@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Catálogo Rápido — VIC Technology</title>
+<meta name="description" content="Soluciones digitales, publicidad, sistemas y soporte tecnológico para negocios en Maracay. Cotiza directo por WhatsApp.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 108'%3E%3Cpolygon points='50,4 92,28 92,80 50,104 8,80 8,28' fill='%231a2b4c' stroke='%2300b4d8' stroke-width='7'/%3E%3Cpath d='M25 36 L37 72 L47 72 L59 36 L50 36 L42 61 L34 36 Z M48 45 L77 45 L74 52 L64 52 L56 77 L47 77 L55 52 L45 52 Z' fill='%23ffffff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a2b4c;
+    --ink-deep:#0e2745;
+    --paper:#f4f6f9;
+    --card:#ffffff;
+    --stone:#495057;
+    --line:#e2e8f0;
+    --clay:#4a90e2;
+    --clay-deep:#357abd;
+    --gold:#00b4d8;
+    --wa:#1ebe5d;
+    --wa-deep:#179c4b;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.45;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:84px;
+  }
+  h1,h2,h3,.slab{ font-family:'Zilla Slab', serif; }
+
+  /* Header compacto */
+  .top-header{
+    background:linear-gradient(160deg, var(--ink) 0%, var(--ink-deep) 100%);
+    color:#fff;
+    padding:24px 18px 22px;
+    text-align:center;
+    border-bottom:3px solid var(--gold);
+  }
+  .brand-row{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:8px;
+  }
+  .brand-row svg{ width:40px; height:42px; }
+  .brand-row span{ font-family:'Zilla Slab', serif; font-size:1.45rem; font-weight:700; letter-spacing:-0.01em; }
+  .top-header p{
+    font-size:0.9rem;
+    color:rgba(255,255,255,0.85);
+    max-width:44ch;
+    margin:0 auto 16px;
+  }
+  .quick-links{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .q-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    padding:8px 14px;
+    border-radius:6px;
+    font-size:0.82rem;
+    font-weight:600;
+    text-decoration:none;
+    border:1px solid rgba(255,255,255,0.22);
+    color:#fff;
+    background:rgba(255,255,255,0.08);
+    cursor:pointer;
+    transition:all .15s;
+  }
+  .q-btn:hover{ background:rgba(255,255,255,0.16); border-color:var(--gold); }
+  .q-btn.primary{ background:var(--clay); color:var(--ink-deep); border-color:var(--clay); }
+  .q-btn.primary:hover{ background:var(--gold); border-color:var(--gold); }
+
+  /* Contenedor principal */
+  .container{ max-width:680px; margin:0 auto; padding:16px 14px; }
+
+  /* Buscador y filtros */
+  .search-box{
+    position:sticky;
+    top:0;
+    z-index:20;
+    background:var(--paper);
+    padding:10px 0 12px;
+  }
+  .search-input{
+    width:100%;
+    padding:11px 14px;
+    border:1.5px solid #cbd5e1;
+    border-radius:8px;
+    font-size:0.95rem;
+    font-family:inherit;
+    background:#fff;
+    color:var(--ink);
+  }
+  .search-input:focus{ outline:none; border-color:var(--clay); }
+
+  .filters{
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+    padding-top:10px;
+    scrollbar-width:none;
+  }
+  .filters::-webkit-scrollbar{ display:none; }
+  .pill{
+    white-space:nowrap;
+    padding:6px 13px;
+    border-radius:20px;
+    border:1px solid #cbd5e1;
+    background:#fff;
+    color:var(--stone);
+    font-size:0.8rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:all .15s;
+  }
+  .pill.active{
+    background:var(--ink);
+    color:#fff;
+    border-color:var(--ink);
+  }
+
+  /* Tarjetas de servicio */
+  .grid{ display:flex; flex-direction:column; gap:12px; margin-top:6px; }
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-left:4px solid var(--clay);
+    border-radius:8px;
+    padding:15px 16px;
+    box-shadow:0 1px 3px rgba(15,23,42,0.04);
+  }
+  .card.featured{ border-left-color:var(--gold); background:#fbfdff; }
+  .card-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:10px;
+    margin-bottom:6px;
+  }
+  .card h3{ font-size:1.06rem; color:var(--ink); line-height:1.25; }
+  .price-tag{
+    flex-shrink:0;
+    background:#e6f4fa;
+    color:var(--ink-deep);
+    border:1px solid #bae6fd;
+    font-size:0.76rem;
+    font-weight:700;
+    padding:3px 9px;
+    border-radius:5px;
+    white-space:nowrap;
+  }
+  .card p{ font-size:0.88rem; color:var(--stone); margin-bottom:12px; }
+  .card-footer{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+  }
+  .cat-label{ font-size:0.74rem; color:#64748b; font-weight:500; }
+  .wa-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:var(--ink);
+    color:#fff;
+    text-decoration:none;
+    font-size:0.82rem;
+    font-weight:600;
+    padding:8px 14px;
+    border-radius:6px;
+    transition:background .15s;
+  }
+  .wa-btn:hover{ background:var(--clay-deep); }
+
+  .empty-msg{ text-align:center; padding:32px 16px; color:var(--stone); font-size:0.92rem; display:none; }
+
+  /* Barra flotante inferior */
+  .floating-bar{
+    position:fixed;
+    bottom:0; left:0; right:0;
+    background:rgba(255,255,255,0.96);
+    border-top:1px solid var(--line);
+    padding:10px 14px;
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    z-index:30;
+    backdrop-filter:blur(6px);
+  }
+  .floating-bar a{
+    flex:1;
+    max-width:330px;
+    text-align:center;
+    padding:11px 14px;
+    border-radius:7px;
+    font-size:0.88rem;
+    font-weight:700;
+    text-decoration:none;
+  }
+  .f-wa{ background:var(--wa); color:#fff; }
+  .f-wa:hover{ background:var(--wa-deep); }
+  .f-web{ background:var(--ink); color:#fff; }
+
+  /* Modal QR */
+  .modal-backdrop{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(14,39,69,0.78);
+    z-index:100;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+  }
+  .modal-backdrop.open{ display:flex; }
+  .modal{
+    background:#fff;
+    border-radius:12px;
+    max-width:340px;
+    width:100%;
+    padding:24px 20px;
+    text-align:center;
+    box-shadow:0 20px 40px rgba(0,0,0,0.3);
+  }
+  .modal h3{ font-size:1.25rem; margin-bottom:6px; color:var(--ink); }
+  .modal p{ font-size:0.84rem; color:var(--stone); margin-bottom:16px; }
+  .qr-frame{
+    background:#fff;
+    padding:12px;
+    border:2px solid var(--line);
+    border-radius:10px;
+    display:inline-block;
+    margin-bottom:14px;
+  }
+  .qr-frame img{ display:block; width:210px; height:210px; }
+  .modal-actions{ display:flex; gap:8px; justify-content:center; }
+  .m-btn{
+    padding:9px 14px;
+    border-radius:6px;
+    font-size:0.84rem;
+    font-weight:600;
+    border:1px solid #cbd5e1;
+    background:#f8fafc;
+    color:var(--ink);
+    cursor:pointer;
+    text-decoration:none;
+  }
+  .m-btn.solid{ background:var(--ink); color:#fff; border-color:var(--ink); }
+</style>
+</head>
+<body>
+
+<header class="top-header">
+  <div class="brand-row">
+    <svg viewBox="0 0 100 108" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polygon points="50,4 92,28 92,80 50,104 8,80 8,28" fill="#0e2745" stroke="#00b4d8" stroke-width="6.5" stroke-linejoin="round"/>
+      <polygon points="50,12 85,32 85,76 50,96 15,76 15,32" stroke="#4a90e2" stroke-width="1.2" stroke-opacity="0.55" stroke-dasharray="6 4"/>
+      <path d="M23 36 L36 73 L46 73 L59 36 L49.5 36 L41 61.5 L32.5 36 Z" fill="#ffffff"/>
+      <path d="M48 45 L79 45 L76 52.5 L65.5 52.5 L57 79 L47.5 79 L56 52.5 L45 52.5 Z" fill="#00b4d8"/>
+    </svg>
+    <span>VIC Technology</span>
+  </div>
+  <p>Soluciones digitales, ventas y respaldo tecnológico para hacer crecer tu negocio.</p>
+  <div class="quick-links">
+    <a href="https://wa.me/584128850521?text=Hola%20VIC%20Technology,%20vengo%20de%20su%20cat%C3%A1logo%20digital" target="_blank" rel="noopener" class="q-btn primary">💬 WhatsApp Directo</a>
+    <a href="../" class="q-btn">🌐 Web Oficial</a>
+    <button type="button" class="q-btn" id="openQrBtn">📱 Código QR</button>
+  </div>
+</header>
+
+<main class="container">
+  <div class="search-box">
+    <input type="search" id="searchInput" class="search-input" placeholder="Buscar servicio (ej. anuncios, QR, internet, web, sistema)...">
+    <div class="filters" id="filterBar">
+      <button class="pill active" data-cat="todos">Todos (18)</button>
+      <button class="pill" data-cat="ventas">Ventas y Redes</button>
+      <button class="pill" data-cat="comercios">Comercios y Cajas</button>
+      <button class="pill" data-cat="sistemas">Sistemas y Nube</button>
+    </div>
+  </div>
+
+  <div class="grid" id="servicesGrid"></div>
+  <div class="empty-msg" id="emptyMsg">No encontramos servicios con esa palabra. Escríbenos directo por WhatsApp y te ayudamos.</div>
+</main>
+
+<div class="floating-bar">
+  <a href="https://wa.me/584128850521?text=Hola%20VIC%20Technology,%20quiero%20una%20cotizaci%C3%B3n%20para%20mi%20negocio" target="_blank" rel="noopener" class="f-wa">Cotizar por WhatsApp</a>
+  <a href="../" class="f-web">Ver Web Completa</a>
+</div>
+
+<!-- Modal Código QR -->
+<div class="modal-backdrop" id="qrModal" role="dialog" aria-modal="true" aria-labelledby="qrTitle">
+  <div class="modal">
+    <h3 id="qrTitle">Escanea el Catálogo</h3>
+    <p>Comparte este código QR para abrir los servicios y precios de VIC Technology al instante.</p>
+    <div class="qr-frame">
+      <img id="qrImage" alt="Código QR del catálogo VIC Technology">
+    </div>
+    <div class="modal-actions">
+      <a id="downloadQrBtn" download="QR-Catalogo-VIC-Technology.png" class="m-btn solid">Descargar QR</a>
+      <button type="button" id="closeQrBtn" class="m-btn">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const PHONE = "584128850521";
+
+  const SERVICES = [
+    {
+      title: "Campaña de Prueba Meta Ads (7 Días)",
+      price: "$60 (c/ pauta)",
+      cat: "ventas",
+      catName: "Ventas y Redes",
+      featured: true,
+      desc: "Configuración profesional y anuncios en Instagram y Facebook (incluye $25 de pauta + gestión) para atraer clientes reales directo a tu WhatsApp."
+    },
+    {
+      title: "Sistema QR de Consulta de Precios (BCV / USD)",
+      price: "$40 - $60",
+      cat: "comercios",
+      catName: "Comercios y Cajas",
+      featured: true,
+      desc: "Tus clientes escanean un QR en el local y ven precios actualizados al instante en bolívares y dólares, evitando filas en caja."
+    },
+    {
+      title: "Google Maps + QR de Reseñas 5 Estrellas",
+      price: "$30 - $45",
+      cat: "ventas",
+      catName: "Ventas y Redes",
+      featured: true,
+      desc: "Optimizamos tu ficha en Google Maps y entregamos un QR impreso/digital para mostrador que multiplica tus reseñas positivas."
+    },
+    {
+      title: "Blindaje de Internet para Puntos de Venta",
+      price: "$40 - $65",
+      cat: "comercios",
+      catName: "Comercios y Cajas",
+      featured: true,
+      desc: "Respaldo automático con doble conexión de internet para que tus puntos de venta y pagos móviles nunca se detengan si cae tu proveedor (equipos aparte)."
+    },
+    {
+      title: "Videos Comerciales Cortos con IA (Reels / TikTok)",
+      price: "$15 - $25 / video",
+      cat: "ventas",
+      catName: "Ventas y Redes",
+      desc: "Guion y creación de videos verticales con presentador virtual y locución profesional listos para publicar (paquete de 4 videos por $60)."
+    },
+    {
+      title: "Gestión Mensual de Campañas Meta Ads",
+      price: "Desde $90/mes",
+      cat: "ventas",
+      catName: "Ventas y Redes",
+      desc: "Administración continua de tus anuncios en Instagram y Facebook con optimización de presupuesto y reportes claros (pauta aparte)."
+    },
+    {
+      title: "Catálogo Digital en WhatsApp + Cotizador",
+      price: "$35 - $50",
+      cat: "ventas",
+      catName: "Ventas y Redes",
+      desc: "Configuración completa de WhatsApp Business con catálogo organizado, respuestas rápidas y calculadora para cotizar en segundos."
+    },
+    {
+      title: "Landing Page Comercial con Dominio Propio",
+      price: "$80 - $120",
+      cat: "ventas",
+      catName: "Ventas y Redes",
+      desc: "Página web rápida enfocada en convertir visitas en mensajes de WhatsApp (pago único + dominio anual aprox. $15)."
+    },
+    {
+      title: "Alojamiento Web (Hosting) Rápido y Seguro",
+      price: "Desde $10/mes",
+      cat: "sistemas",
+      catName: "Sistemas y Nube",
+      desc: "Mantén tu sitio web o sistema activo las 24 horas con certificado de seguridad SSL, respaldos periódicos y soporte directo ($85/año)."
+    },
+    {
+      title: "Respaldo Eléctrico para Caja e Internet",
+      price: "$35 - $60",
+      cat: "comercios",
+      catName: "Comercios y Cajas",
+      desc: "Cálculo e instalación de sistemas UPS o inversores para mantener encendidos el módem, router y caja registradora en cortes eléctricos (equipos aparte)."
+    },
+    {
+      title: "Optimización de PC Administrativa + Respaldo en Nube",
+      price: "$30 - $50",
+      cat: "comercios",
+      catName: "Comercios y Cajas",
+      desc: "Aceleración de computadoras de caja (Valery, Saint, Profit) y copias de seguridad automáticas diarias para no perder tu información."
+    },
+    {
+      title: "Separación y Mejora de Red Wi-Fi Comercial",
+      price: "$35 - $55",
+      cat: "comercios",
+      catName: "Comercios y Cajas",
+      desc: "Aislamos la red de tus cajas y oficinas del Wi-Fi de invitados para evitar lentitud al cobrar y proteger tus datos."
+    },
+    {
+      title: "Acceso Remoto a Cámaras de Seguridad (CCTV)",
+      price: "$25 - $45",
+      cat: "comercios",
+      catName: "Comercios y Cajas",
+      desc: "Configuramos tus cámaras actuales para que vigiles tu negocio en vivo desde tu teléfono móvil con alertas de movimiento."
+    },
+    {
+      title: "Asistentes Virtuales y Automatización por WhatsApp",
+      price: "Desde $80",
+      cat: "sistemas",
+      catName: "Sistemas y Nube",
+      desc: "Automatiza respuestas frecuentes, envío de precios, toma de pedidos y tareas repetitivas entre hojas de cálculo y mensajería."
+    },
+    {
+      title: "Sistema Administrativo y Control de Negocio (ERP)",
+      price: "Desde $15/mes",
+      cat: "sistemas",
+      catName: "Sistemas y Nube",
+      desc: "Controla ventas, inventario, clientes y sucursales desde un sistema modular (comercios: $20/mes; planes hasta $35/mes según módulos)."
+    },
+    {
+      title: "Desarrollo de Software e Integraciones a Medida",
+      price: "Desde $220",
+      cat: "sistemas",
+      catName: "Sistemas y Nube",
+      desc: "Aplicaciones web internas, portales de clientes y conexiones entre tus sistemas actuales y pasarelas de pago según alcance."
+    },
+    {
+      title: "Reducción de Costos en la Nube (FinOps AWS)",
+      price: "Desde $100",
+      cat: "sistemas",
+      catName: "Sistemas y Nube",
+      desc: "Auditoría técnica de servidores y servicios en AWS para recortar hasta un 60% tu factura mensual (o 20% del ahorro generado)."
+    },
+    {
+      title: "Arquitectura Cloud, Migraciones y Alta Disponibilidad",
+      price: "Desde $200",
+      cat: "sistemas",
+      catName: "Sistemas y Nube",
+      desc: "Diseño y migración de servidores en la nube para empresas que necesitan estabilidad, seguridad y escalabilidad continua."
+    }
+  ];
+
+  const grid = document.getElementById("servicesGrid");
+  const searchInput = document.getElementById("searchInput");
+  const emptyMsg = document.getElementById("emptyMsg");
+  const filterBtns = document.querySelectorAll(".pill");
+  let activeCat = "todos";
+
+  function render() {
+    const q = searchInput.value.trim().toLowerCase();
+    const filtered = SERVICES.filter(s => {
+      const matchCat = activeCat === "todos" || s.cat === activeCat;
+      const matchText = !q || s.title.toLowerCase().includes(q) || s.desc.toLowerCase().includes(q);
+      return matchCat && matchText;
+    });
+
+    grid.innerHTML = filtered.map(s => {
+      const msg = encodeURIComponent(`Hola VIC Technology, vi su catálogo y me interesa: ${s.title} (${s.price})`);
+      return `
+        <article class="card ${s.featured ? 'featured' : ''}">
+          <div class="card-top">
+            <h3>${s.title}</h3>
+            <span class="price-tag">${s.price}</span>
+          </div>
+          <p>${s.desc}</p>
+          <div class="card-footer">
+            <span class="cat-label">${s.catName}</span>
+            <a href="https://wa.me/${PHONE}?text=${msg}" target="_blank" rel="noopener" class="wa-btn">Pedir info →</a>
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    emptyMsg.style.display = filtered.length ? "none" : "block";
+  }
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeCat = btn.dataset.cat;
+      render();
+    });
+  });
+
+  searchInput.addEventListener("input", render);
+  render();
+
+  // Lógica del Código QR dinámico
+  const qrModal = document.getElementById("qrModal");
+  const qrImage = document.getElementById("qrImage");
+  const downloadQrBtn = document.getElementById("downloadQrBtn");
+  const catalogUrl = window.location.href.split("#")[0];
+  const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&color=1a2b4c&bgcolor=ffffff&margin=12&data=${encodeURIComponent(catalogUrl)}`;
+
+  document.getElementById("openQrBtn").addEventListener("click", () => {
+    qrImage.src = qrApiUrl;
+    qrModal.classList.add("open");
+  });
+
+  document.getElementById("closeQrBtn").addEventListener("click", () => {
+    qrModal.classList.remove("open");
+  });
+
+  qrModal.addEventListener("click", (e) => {
+    if (e.target === qrModal) qrModal.classList.remove("open");
+  });
+
+  downloadQrBtn.addEventListener("click", async (e) => {
+    e.preventDefault();
+    try {
+      const resp = await fetch(qrApiUrl);
+      const blob = await resp.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "QR-Catalogo-VIC-Technology.png";
+      a.click();
+      URL.revokeObjectURL(url);
+    } catch {
+      window.open(qrApiUrl, "_blank");
+    }
+  });
+</script>
+
+</body>
+</html>
